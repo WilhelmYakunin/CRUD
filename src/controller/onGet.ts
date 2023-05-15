@@ -2,6 +2,7 @@ import * as path from 'path';
 import { createReadStream } from 'fs';
 import state from '../model';
 import { createError } from '../controller';
+import { v4 as uuidv4, validate } from 'uuid';
 
 const __dirname = path.dirname(__filename);
 
@@ -38,7 +39,7 @@ const onGet = (url: string, res: any) => {
   const id = url.slice(indexofLastSlash + 1);
 
   const sendUser = () => {
-    if (isNaN(Number(id)) && url.slice(0, 10) === '/api/users') {
+    if (!validate(id) && url.slice(0, 10) === '/api/users') {
       res.statusCode = 400;
       const err = createError(
         400,

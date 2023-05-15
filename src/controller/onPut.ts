@@ -1,5 +1,6 @@
 import createError from './createError';
 import state from '../model';
+import { v4 as uuidv4, validate } from 'uuid';
 
 const onPut = (req: any, res: any) => {
   let userData: string = '';
@@ -12,7 +13,7 @@ const onPut = (req: any, res: any) => {
       const indexofLastSlash = req.url.lastIndexOf('/');
       const id = req.url.slice(indexofLastSlash + 1);
 
-      if (isNaN(Number(id))) {
+      if (!validate(id)) {
         res.statusCode = 400;
         const err = createError(
           400,

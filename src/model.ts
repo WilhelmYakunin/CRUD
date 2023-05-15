@@ -1,13 +1,15 @@
+import { v4 } from 'uuid';
+
 interface user {
-  id: string;
+  id: typeof v4;
   username: string;
   age: number;
-  hobbies?: string[] | [];
+  hobbies: string[] | [];
 }
 
 interface state {
   users: user[] | any[];
-  usersIDs: { count: number; ids: any };
+  usersIDs: { count: number; ids: string[] };
   paths: string[];
 }
 

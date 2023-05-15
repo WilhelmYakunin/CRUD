@@ -1,5 +1,6 @@
 import createError from './createError';
 import state from '../model';
+import { v4 as uuidv4 } from 'uuid';
 
 const onPost = (req: any, res: any) => {
   if (req.url !== '/api/users') {
@@ -79,7 +80,7 @@ const onPost = (req: any, res: any) => {
       }
 
       const getId = () => {
-        const id = String(state.usersIDs.count);
+        const id = uuidv4();
         state.usersIDs.count += 1;
         state.usersIDs.ids.push(id);
         return id;

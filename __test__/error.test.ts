@@ -21,6 +21,11 @@ describe('If errors func creats properly', () => {
     expect(err.codeClass).toBe('not http or server error');
   });
 
+  test('500 _ error on the server side', () => {
+    const err = createError(500, 'foo');
+    expect(err.codeClass).toBe('Internal server error');
+  });
+
   test('601 _ singals if params is inccorect', () => {
     const err = createError(601, 'foo');
     expect(err.codeClass).toBe('not http or server error');
