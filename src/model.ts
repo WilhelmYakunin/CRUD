@@ -6,17 +6,3 @@ interface user {
   age: number;
   hobbies: string[] | [];
 }
-
-interface state {
-  users: user[] | any[];
-  usersIDs: { count: number; ids: string[] };
-  paths: string[];
-}
-
-const defaultState: state = {
-  users: [],
-  usersIDs: { count: 0, ids: [] },
-  paths: [],
-};
-
-export default defaultState;

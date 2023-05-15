@@ -2,7 +2,7 @@ import * as http from 'http';
 import app from '../src/app';
 import request from 'supertest';
 
-import defaultState from '../src/model';
+import defaultState from '../src/controller/state';
 
 describe('Sever starts properly', () => {
   const server = http.createServer(app);

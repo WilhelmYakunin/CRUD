@@ -1,5 +1,5 @@
 import createError from './createError';
-import state from '../model';
+import state from './state';
 import { v4 as uuidv4, validate } from 'uuid';
 
 const onPut = (req: any, res: any) => {

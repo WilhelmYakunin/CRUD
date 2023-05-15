@@ -1,6 +1,15 @@
 import { onGet, onPost, onPut, onDelete, createError } from './controller';
+import defaultState from './controller/state';
 
 const app = (req: any, res: any) => {
+  const { env, pid } = process;
+  const { port } = env;
+
+  if (process.send) {
+    req.headers = { ...req.headers, host: 'localhost:4040' };
+  } else {
+    console.log(`pid: ${pid}: ${req.method} ${req.url}`);
+  }
   const { method, url } = req;
 
   switch (method) {

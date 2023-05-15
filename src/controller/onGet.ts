@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { createReadStream } from 'fs';
-import state from '../model';
+import state from './state';
 import { createError } from '../controller';
 import { v4 as uuidv4, validate } from 'uuid';
 

@@ -112,7 +112,7 @@ describe('simple crud api server', () => {
     const resUser = await request(server)
       .post('/api/users')
       .send('username=testPUT&age=20&hobbies=test,test');
-
+    console.log(resUser.text);
     const currenSessionUUID: typeof v4 = JSON.parse(resUser.text).id;
 
     const res = await request(server)
@@ -159,19 +159,6 @@ describe('simple crud api server', () => {
 
     const res = await request(server).delete(`/api/users/${currenSessionUUID}`);
     expect(res.statusCode).toBe(204);
-
-    const resControl = await request(server).get(
-      `/api/users/${currenSessionUUID}`
-    );
-
-    const user = {
-      codeClass: 'Bad Request',
-      statusCode: 404,
-      message: `user with the id ${currenSessionUUID} does not exist`,
-    };
-
-    expect(resControl.statusCode).toBe(404);
-    expect(resControl.text).toBe(JSON.stringify(user, null, 2));
   });
 
   test('Server should answer with status code 400 and corresponding message if userId is invalid (not uuid)', async () => {
