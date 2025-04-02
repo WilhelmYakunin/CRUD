@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "2d3cff93-738d-4fa7-a72f-417383827bb8",
+		"name": "nodejs-crud-RSSCholl-q2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21532444"
+	},
+	"item": [
+		{
+			"name": "answer with status code 200 and all users records",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4040/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 201 and newly created record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Mr. James Bond",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "58",
+							"type": "text"
+						},
+						{
+							"key": "hobbies",
+							"value": "swimming, altering",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4040/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 200 and record with id === userId if it exists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4040/api/users/efab0aea-779a-4e4d-b376-13ef036c2d27",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"efab0aea-779a-4e4d-b376-13ef036c2d27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 400 and corresponding message if userId is invalid (not uuid)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4040/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 404 and corresponding message if record with id === userId doesn't exist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4040/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"1b9d6bcd-bbfd-4b2d-9b5d-ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 400 and corresponding message if request body does not contain required fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Garry",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4040/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 200 and updated record",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Michael Doog",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "56",
+							"type": "text"
+						},
+						{
+							"key": "hobbies",
+							"value": "ambient music",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 400 and corresponding message if userId is invalid (not uuid)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Michael Doog",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "56",
+							"type": "text"
+						},
+						{
+							"key": "hobbies",
+							"value": "ambient music",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/00000000-0000-0000-0000",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"00000000-0000-0000-0000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 404 and corresponding message if record with id === userId doesn't exist",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Michael Doog",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "56",
+							"type": "text"
+						},
+						{
+							"key": "hobbies",
+							"value": "ambient music",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 204 if the record is found and deleted",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/d234e866-0cb8-4a6d-a78f-170211328a17",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"d234e866-0cb8-4a6d-a78f-170211328a17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 404 and corresponding message if record with id === userId doesn't exist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/04e5f96a-089a-421e-925a-f26016e64bca",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"04e5f96a-089a-421e-925a-f26016e64bca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer with status code 400 and corresponding message if userId is invalid (not uuid)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4040/api/users/0",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"users",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Requests to non-existing endpoints (e.g. some-non/existing/resource)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4040/some-non/existing/resource",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"some-non",
+						"existing",
+						"resource"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

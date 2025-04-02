@@ -1,0 +1,62 @@
+import { IncomingMessage, ServerResponse } from 'http';
+import { correctUrl } from '../correctUrl';
+import { usersDB } from '../userDataBase';
+import { getJSON } from '../getJSON';
+import { TUser } from '../types/type';
+import { v4 as uuidv4 } from 'uuid';
+
+export const handleCreate = async (
+  req: IncomingMessage,
+  res: ServerResponse
+) => {
+  const baseUrl = '/api/users';
+  const url = correctUrl(req.url);
+  res.setHeader('Content-Type', 'application/json');
+  if (url !== baseUrl) {
+    res.writeHead(400);
+    res.end(JSON.stringify({ error: 'Resource not found' }));
+    return;
+  }
+  const userStart = {
+    username: '',
+    age: -1,
+    hobbies: [] as any,
+  };
+  let user: TUser | undefined;
+  req.on('data', async (data) => {
+    user = await getJSON(data);
+  });
+
+  req.on('end', async () => {
+    const id = { id: uuidv4() };
+    const addUser = { ...id, ...userStart, ...user };
+    if (
+      user &&
+      user.username &&
+      user.age &&
+      typeof addUser.username === 'string' &&
+      typeof addUser.age === 'number' &&
+      addUser.age >= 0 &&
+      Array.isArray(addUser.hobbies) &&
+      !addUser.hobbies.filter((e) => typeof e !== 'string').length
+    ) {
+      usersDB.create(addUser);
+      res.writeHead(201);
+      res.end(JSON.stringify(addUser));
+      return;
+    } else if (user) {
+      res.writeHead(400);
+      res.end(
+        JSON.stringify({
+          error:
+            'The body does not contain required valid fields: {username: string, age: number}. hobbies: string[] is not a required field',
+        })
+      );
+    } else {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Errors on the server side' }));
+    }
+  });
+  const promis = new Promise((resolve) => res.on('close', () => resolve(true)));
+  await promis;
+};
